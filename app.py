@@ -50,7 +50,6 @@ def precipitation():
     session.close()
 
 
-   
     
     # Convert the list to Dictionary
     all_prcp = []
@@ -86,7 +85,7 @@ def tobs():
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of all TOBs"""
+    #Return a list of all TOBs
     # Query all tobs
 
     results = session.query(Measurement.date,  Measurement.tobs,Measurement.prcp).\
@@ -116,7 +115,7 @@ def Start_date(start_date):
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of min, avg and max tobs for a start date"""
+    #Return a list of min, avg and max tobs for a start date
     # Query all tobs
 
     results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
@@ -128,9 +127,9 @@ def Start_date(start_date):
     start_date_tobs = []
     for min, avg, max in results:
         start_date_tobs_dict = {}
-        start_date_tobs_dict["min_temp"] = min
-        start_date_tobs_dict["avg_temp"] = avg
-        start_date_tobs_dict["max_temp"] = max
+        start_date_tobs_dict["TMIN"] = min
+        start_date_tobs_dict["TAVG"] = avg
+        start_date_tobs_dict["TMAX"] = max
         start_date_tobs.append(start_date_tobs_dict) 
     return jsonify(start_date_tobs)
 
@@ -139,7 +138,7 @@ def Start_end_date(start_date, end_date):
     # Create our session (link) from Python to the DB
     session = Session(engine)
 
-    """Return a list of min, avg and max tobs for start and end dates"""
+    # Return a list of min, avg and max tobs for start and end dates
     # Query all tobs
 
     results = session.query(func.min(Measurement.tobs), func.avg(Measurement.tobs), func.max(Measurement.tobs)).\
@@ -151,9 +150,9 @@ def Start_end_date(start_date, end_date):
     start_end_tobs = []
     for min, avg, max in results:
         start_end_tobs_dict = {}
-        start_end_tobs_dict["min_temp"] = min
-        start_end_tobs_dict["avg_temp"] = avg
-        start_end_tobs_dict["max_temp"] = max
+        start_end_tobs_dict["TMIN"] = min
+        start_end_tobs_dict["TAVG"] = avg
+        start_end_tobs_dict["TMAX"] = max
         start_end_tobs.append(start_end_tobs_dict) 
     
 
